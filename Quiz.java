@@ -13,4 +13,9 @@
     public ArrayList<Question> getQuestions() {
         return questions;
     }
+}   
+        public String getChoices() {
+            return choices;
+        }
+    }
 }
