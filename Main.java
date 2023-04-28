@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
     	System.out.println("Welcome to the Introvert Extrovert Quiz! Please answer yes or no to the following questions.");
         ArrayList<Question> questions = new ArrayList<>();
         questions.add(new Question("Do you enjoy spending time alone?", true));
@@ -38,5 +39,63 @@ public class Main {
 
         System.out.println("Introverted score: " + introvertedScore);
         System.out.println("Extroverted score: " + extrovertedScore);
+    }
+}
+
+int[] answers = new int[questions.size()];
+        
+        System.out.println("Welcome to the personality quiz!");
+        for (int i = 0; i < questions.size(); i++) {
+            Question question = questions.get(i);
+            System.out.println("Question " + (i + 1) + ": " + question.getQuestion());
+            System.out.println(question.getChoices());
+            System.out.print("Enter your answer: ");
+            String input = scanner.nextLine();
+            if (input.equals("a")) {
+                answers[i] = 1;
+            } else if (input.equals("b")) {
+                answers[i] = 2;
+            } else if (input.equals("c")) {
+                answers[i] = 3;
+            } else if (input.equals("d")) {
+                answers[i] = 4;
+            } else {
+                System.out.println("Invalid input, please try again.");
+                i--;
+            }
+        }
+        
+        int total = 0;
+        for (int answer : answers) {
+            total += answer;
+        }
+        
+        if (total < 5) {
+            System.out.println("You are an introvert!");
+        } else if (total < 10) {
+            System.out.println("You are an extrovert!");
+        } else if (total < 15) {
+            System.out.println("You are an introvert!");
+        } else {
+            System.out.println("You are an extrovert!");
+        }
+    }
+    
+    public static class Question {
+        private String question;
+        private String choices;
+        
+        public Question(String question, String choices) {
+            this.question = question;
+            this.choices = choices;
+        }
+        
+        public String getQuestion() {
+            return question;
+        }
+        
+        public String getChoices() {
+            return choices;
+        }
     }
 }
